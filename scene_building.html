@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+
+<head>
+    <!-- import aframe and then ar.js with image tracking / location based features -->
+    <!-- <script
+        src="https://cdn.jsdelivr.net/gh/aframevr/aframe@1c2407b26c61958baa93967b5412487cd94b290b/dist/aframe-master.min.js"></script>-->
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+</head>
+
+<body style="background-color: #b4c9af">
+
+
+    <a-scene>
+        <a-assets>
+            <img id="business_card" src="./markers/student_card.jpg">
+            <video id="business_video" autoplay loop="true" src="assets/video/VideoSample_01.mp4"></video>
+        </a-assets>
+        <a-image src="#business_card" width="9" height="5"></a-image>
+        <!-- Main Plane-->
+        <a-plane rotation="0 0 0" color="#ff00ff" opacity="0.3" position="18 -5 0" width="25" height="15">
+        </a-plane>
+        <!-- Text Block -->
+        <a-plane rotation="0 0 0" color="#ff00ff" opacity="0.3" position="18 -1 0" width="23" height="5">
+            <a-text width="15" height="15" value="Hello, World!" position="-11 1.5 0"></a-text>
+        </a-plane>
+        <!-- Video Block -->'
+        <a-video src="#business_video" width="12" height="7" position="12.5 -8 0"></a-video>
+        <a-entity>
+            <a-camera position="0 0 17">
+            </a-camera>
+        </a-entity>
+
+    </a-scene>
+</body>
