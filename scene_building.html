@@ -20,8 +20,7 @@
         </a-assets>
         <a-image src="#business_card" width="9" height="5"></a-image>
         <!-- Main Plane-->
-        <a-plane color="#ffffff" opacity="0.3" rotation="0 0 0" position="18 0 0" width="25" height="15"
-            navigate-on-click="url: https://www.facebook.com/kaixian9811/">
+        <a-plane color="#ffffff" opacity="0.3" rotation="0 0 0" position="18 0 0" width="25" height="15">
             <!-- Text Block -->
             <a-plane color="#ffffff" opacity="0.3" position="0 4 0" width="23" height="5">
                 <a-text color="#000000" width="13" height="13"
@@ -53,12 +52,13 @@
                 <a-animation attribute="rotation" dur="7000" to="0 360 0" easing="linear" repeat="indefinite">
                 </a-animation>
             </a-box>
-            <a-box src="#facebook_logo" position="0.8 0 0" depth="0.15" height="0.15" width="0.15"
-                navigate-on-click="url: http://facebook.com/utkarshgpta">
-                <a-animation attribute="rotation" dur="7000" to="0 360 0" easing="linear" repeat="indefinite">
-                </a-animation>
+            <a-box src="#facebook_logo"
+                animation="property: rotation; to: 0 360 0; dur: 7000; easing: linear; loop: true" depth="1" height="1"
+                width="1" src="#facebook_logo" width="1" height="1" position="0 2 2"
+                navigate-on-click="url: https://www.facebook.com/kaixian9811/">
             </a-box>
         </a-plane>
+        <a-entity id="camera" cursor="rayOrigin: mouse"></a-entity>
         <a-entity>
             <a-camera position="0 0 17">
             </a-camera>
