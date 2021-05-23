@@ -20,18 +20,6 @@
                 });
             }
         });
-        AFRAME.registerComponent('navigate-facebook', {
-            schema: {
-                url: { default: '' }
-            },
-            init: function () {
-                var data = this.data;
-                var el = this.el;
-                el.addEventListener('click', function () {
-                    window.open(data.url, '_blank');
-                });
-            }
-        });
     </script>
     <!-- style for the loader -->
     <style>
@@ -94,7 +82,7 @@
                     <a-box src="#facebook_logo"
                         animation="property: rotation; to: 0 360 0; dur: 7000; easing: linear; loop: true"
                         position="0 2 1" depth="1" height="1" width="1" src="#facebook_logo" width="1" height="1"
-                        navigate-facebook="url: https://www.facebook.com/kaixian9811/">
+                        navigate-on-click="url: https://www.facebook.com/kaixian9811/">
                     </a-box>
                     <a-box src="#github_logo"
                         animation="property: rotation; to: 0 360 0; dur: 7000; easing: linear; loop: true"
@@ -125,6 +113,7 @@
         <a-entity id="camera" cursor="rayOrigin: mouse"></a-entity>
         <a-entity>
             <a-camera>
+                <a-cursor></a-cursor>
             </a-camera>
         </a-entity>
     </a-scene>
