@@ -52,7 +52,8 @@
     </div>
 
     <!-- a-frame scene -->
-    <a-scene vr-mode-ui="enabled: false;" renderer="logarithmicDepthBuffer: true;" embedded
+    <a-scene cursor="rayOrigin: mouse" raycaster="objects: .link" vr-mode-ui="enabled: false;"
+        renderer="logarithmicDepthBuffer: true;" embedded
         arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;sourceWidth:1280; sourceHeight:960; displayWidth: 1280; displayHeight: 960;">
         <!-- a-nft is the anchor that defines an Image Tracking entity -->
         <!-- on 'url' use the path to the Image Descriptors created before. -->
@@ -83,19 +84,19 @@
 
                     <a-plane position="0 2 2" width="1" height="1" color="#ffffff"
                         navigate-on-click="url: https://www.facebook.com/kaixian9811/"></a-plane>
-                    <a-box src="#facebook_logo"
+                    <a-box class="link" src="#facebook_logo"
                         animation="property: rotation; to: 0 360 0; dur: 7000; easing: linear; loop: true"
                         position="0 2 2" depth="1" height="1" width="1" src="#facebook_logo" width="1" height="1"
                         navigate-on-click="url: https://www.facebook.com/kaixian9811/" raycaster="objects: .clickable"
                         cursor>
                     </a-box>
 
-                    <a-box src="#github_logo"
+                    <a-box class="link" src="#github_logo"
                         animation="property: rotation; to: 0 360 0; dur: 7000; easing: linear; loop: true"
                         position="0 0 2" depth="1" height="1" width="1" width="1" height="1"
                         navigate-on-click="url: https://github.com/KaiXian-1126" raycaster="objects: .clickable" cursor>
                     </a-box>
-                    <a-box src="#linkedin_logo"
+                    <a-box class="link" src="#linkedin_logo"
                         animation="property: rotation; to: 0 360 0; dur: 7000; easing: linear; loop: true"
                         position="0 -2 2" depth="1" height="1" width="1" width="1" height="1"
                         navigate-on-click="url: https://www.linkedin.com/in/tok-kai-xian/"
@@ -112,7 +113,7 @@
             </a-plane>
         </a-nft>
         <!-- static camera that moves according to the device movemenents -->
-        <!-- <a-entity id="camera" cursor="rayOrigin: mouse"></a-entity> -->
+
         <a-entity>
             <a-camera>
                 <!-- <a-entity position="0 0 -3" geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03;"
