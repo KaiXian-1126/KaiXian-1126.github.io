@@ -65,7 +65,11 @@
         </a-assets>
         <a-nft type="nft" url="NFT/student_card_1200" smooth="true" smoothCount="10" smoothTolerance=".01"
             smoothThreshold="5">
-
+            <a-box src="#facebook_logo"
+                animation="property: rotation; to: 0 360 0; dur: 7000; easing: linear; loop: true" depth="1" height="1"
+                width="1" src="#facebook_logo" width="1" height="1" position="50 -1 0"
+                navigate-facebook="url: https://www.facebook.com/kaixian9811/">
+            </a-box>
             <!-- Template 1 -->
             <a-plane color="#ffffff" scale="2 2 1" rotation="-90 0 0" opacity="0.3" position="50 -1 0" width="25"
                 height="15">
@@ -101,11 +105,6 @@
                     <a-image src="#linkedin_logo" width="1" height="1" position="0 -2 1"
                         navigate-on-click="url: https://www.linkedin.com/in/tok-kai-xian/"></a-image> -->
                 </a-plane>
-                <a-box src="#facebook_logo"
-                    animation="property: rotation; to: 0 360 0; dur: 7000; easing: linear; loop: true" position="0 2 0"
-                    depth="1" height="1" width="1" src="#facebook_logo" width="1" height="1" position="50 -1 0"
-                    navigate-facebook="url: https://www.facebook.com/kaixian9811/">
-                </a-box>
 
             </a-plane>
         </a-nft>
