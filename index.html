@@ -26,7 +26,7 @@
                 var onRespondEnabled = true;
                 if (respondInterval >= 0 && respondInterval != null) {
                     respondInterval -= timeDelta;
-                } else if (respondInterval < 0) {
+                } else {
                     onRespondEnabled = true;
                 }
                 if (!this.raycaster) { // Not intersecting.
