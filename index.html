@@ -21,12 +21,14 @@
                 });
             },
 
-            tick: function () {
+            tick: function (time, timeDelta) {
+                console.log("Time: " + time);
+                console.log("timeDelta" + timeDelta);
                 if (!this.raycaster) { return; }  // Not intersecting.
                 let intersection = this.raycaster.components.raycaster.getIntersection(this.el);
                 if (!intersection) { return; }
                 console.log(intersection.point);
-                window.open(this.data, '_blank');
+                //window.open(this.data, '_blank');
             }
         });
         /*AFRAME.registerComponent('navigate-on-click', {
