@@ -22,8 +22,8 @@
             },
 
             tick: function (time, timeDelta) {
-                var respondInterval, bufferTime;
-                var onRespondEnabled = false, bufferEnabled = false;
+                let respondInterval, bufferTime;
+                let onRespondEnabled = false, bufferEnabled = false;
                 if (!this.raycaster) { // Not intersecting.
                     bufferEnabled = false;
                     bufferTime = 3000;
