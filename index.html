@@ -29,26 +29,27 @@
                     bufferTime = 3000;
                     onRespondEnabled = false;
                     respondInterval = 0;
-                    //console.log("Not intersected");
+                    this.el.setAttribute('scale', '1.5 1.5 1.5');
+                    console.log("Not intersected");
                     return;
                 }
                 let intersection = this.raycaster.components.raycaster.getIntersection(this.el);
                 if (!intersection) {
-                    this.el.setAttribute('scale', '1.5 1.5 1.5');
+                    console.log("here");
                     return;
                 }
-                this.el.setAttribute('scale', '1.8 1.8 1.8');
                 bufferEnabled = true;
                 if (bufferEnabled) {
                     bufferTime -= timeDelta;
                     console.log("buffertime: " + bufferTime);
+                    this.el.setAttribute('scale', '1.8 1.8 1.8');
                 }
                 if (bufferTime <= 0) {
                     console.log("buffer time equal 0");
                     onRespondEnabled = true;
                 }
                 if (onRespondEnabled) {
-                    //window.open(this.data, '_blank');
+                    window.open(this.data, '_blank');
                     respondInterval = 3000;
                 }
                 if (respondInterval > 0) {
