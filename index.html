@@ -13,9 +13,13 @@
             init: function () {
                 // Use events to figure out what raycaster is listening so we don't have to
                 // hardcode the raycaster.
+                let onRespondEnable = true;
                 this.el.addEventListener('raycaster-intersected', evt => {
                     this.raycaster = evt.detail.el;
-                    window.open(this.data, '_blank');
+                    if (onRespondEnable) {
+                        window.open(this.data, '_blank');
+                        onRespondEnable = false;
+                    }
                 });
                 this.el.addEventListener('raycaster-intersected-cleared', evt => {
                     this.raycaster = null;
