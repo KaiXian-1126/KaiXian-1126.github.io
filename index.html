@@ -8,7 +8,27 @@
         src="https://cdn.jsdelivr.net/gh/aframevr/aframe@1c2407b26c61958baa93967b5412487cd94b290b/dist/aframe-master.min.js"></script>
     <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
     <script>
-        AFRAME.registerComponent('navigate-on-click', {
+        AFRAME.registerComponent('raycaster-listen', {
+            init: function () {
+                // Use events to figure out what raycaster is listening so we don't have to
+                // hardcode the raycaster.
+                this.el.addEventListener('raycaster-intersected', evt => {
+                    this.raycaster = evt.detail.el;
+                });
+                this.el.addEventListener('raycaster-intersected-cleared', evt => {
+                    this.raycaster = null;
+                });
+            },
+
+            tick: function () {
+                if (!this.raycaster) { return; }  // Not intersecting.
+
+                let intersection = this.raycaster.components.raycaster.getIntersection(this.el);
+                if (!intersection) { return; }
+                console.log(intersection.point);
+            }
+        });
+        /*AFRAME.registerComponent('navigate-on-click', {
             schema: {
                 url: { default: '' }
             },
@@ -32,7 +52,7 @@
                 if (!intersection) { return; }
                 console.log(intersection.point);
             }
-        });
+        });*/
     </script>
     <!-- style for the loader -->
     <style>
@@ -97,17 +117,15 @@
                     <a-box src="#facebook_logo" raycaster="objects: .collidable"
                         animation="property: rotation; to: 0 360 0; dur: 7000; easing: linear; loop: true"
                         scale="1.5 1.5 1.5" position="0 2 1" depth="1" height="1" width="1" src="#facebook_logo"
-                        width="1" height="1" navigate-on-click="url: https://www.facebook.com/kaixian9811/">
+                        width="1" height="1" raycaster-listen>
                     </a-box>
                     <a-box src="#github_logo" raycaster="objects: .collidable"
                         animation="property: rotation; to: 0 360 0; dur: 7000; easing: linear; loop: true"
-                        position="0 0 1" depth="1" height="1" width="1" width="1" height="1"
-                        navigate-on-click="url: https://github.com/KaiXian-1126">
+                        position="0 0 1" depth="1" height="1" width="1" width="1" height="1" raycaster-listen>
                     </a-box>
                     <a-box src="#linkedin_logo" raycaster="objects: .collidable"
                         animation="property: rotation; to: 0 360 0; dur: 7000; easing: linear; loop: true"
-                        position="0 -2 1" depth="1" height="1" width="1" width="1" height="1"
-                        navigate-on-click="url: https://www.linkedin.com/in/tok-kai-xian/">
+                        position="0 -2 1" depth="1" height="1" width="1" width="1" height="1" raycaster-listen>
                     </a-box>
                     <!-- <a-image src="#facebook_logo" width="1" height="1" position="0 2 1"
                         navigate-on-click="url: https://www.facebook.com/kaixian9811/"></a-image>
@@ -120,9 +138,10 @@
             </a-plane>
         </a-nft>
         <!-- static camera that moves according to the device movemenents -->
+        <a-entity raycaster="showLine: true; far: 100; lineColor: red; lineOpacity: 0.5"></a-entity>
         <a-entity camera>
             <a-camera>
-                <a-cursor id="cursor" raycaster="showLine: true; far: 100; lineColor: red; lineOpacity: 0.5"></a-cursor>
+                <a-cursor id="cursor" raycaster></a-cursor>
             </a-camera>
         </a-entity>
     </a-scene>
