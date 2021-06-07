@@ -15,13 +15,14 @@
                 // hardcode the raycaster.
                 this.el.addEventListener('raycaster-intersected', evt => {
                     this.raycaster = evt.detail.el;
+                    window.open(this.data, '_blank');
                 });
                 this.el.addEventListener('raycaster-intersected-cleared', evt => {
                     this.raycaster = null;
                 });
             },
 
-            tick: function (time, timeDelta) {
+            /*tick: function (time, timeDelta) {
                 let respondInterval;
                 let onRespondEnabled = true;
                 if (respondInterval > 0 && respondInterval != null) {
@@ -42,7 +43,7 @@
                     onRespondEnabled = false;
                     window.open(this.data, '_blank');
                 }
-            },
+            },*/
         });
         /*AFRAME.registerComponent('navigate-on-click', {
             schema: {
