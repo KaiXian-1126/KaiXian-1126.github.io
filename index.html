@@ -22,10 +22,10 @@
             },
 
             tick: function (time, timeDelta) {
-                var respondInterval = 0;
+                var time = 0;
                 var onRespondEnabled = true;
-                if (respondInterval > 0) {
-                    respondInterval -= timeDelta;
+                if (time > 0) {
+                    time -= timeDelta;
                 } else {
                     onRespondEnabled = true;
                 }
@@ -37,7 +37,7 @@
                     return;
                 }
                 if (onRespondEnabled) {
-                    respondInterval = 3000;
+                    time = 3000;
                     onRespondEnabled = false;
                     window.open(this.data, '_blank');
                 }
@@ -158,7 +158,7 @@
         <!-- static camera that moves according to the device movemenents -->
         <a-entity>
             <a-camera>
-                <a-cursor id="cursor" fuse="true" raycaster scale="0.4 0.4 0.4"></a-cursor>
+                <a-cursor id="cursor" raycaster scale="0.4 0.4 0.4"></a-cursor>
             </a-camera>
         </a-entity>
     </a-scene>
