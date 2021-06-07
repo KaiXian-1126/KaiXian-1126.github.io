@@ -22,11 +22,11 @@
             },
 
             tick: function (time, timeDelta) {
-                var respondInterval;
+                var respondInterval = 0;
                 var onRespondEnabled = true;
-                if (respondInterval >= 0 && respondInterval != null) {
+                if (respondInterval >= 0) {
                     respondInterval -= timeDelta;
-                } else {
+                } else if (respondInterval < 0) {
                     onRespondEnabled = true;
                 }
                 if (!this.raycaster) { // Not intersecting.
