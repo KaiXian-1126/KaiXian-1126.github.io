@@ -14,9 +14,11 @@
                 // Use events to figure out what raycaster is listening so we don't have to
                 // hardcode the raycaster.
                 this.el.addEventListener('raycaster-intersected', evt => {
+                    console.log("test1");
                     this.raycaster = evt.detail.el;
                 });
                 this.el.addEventListener('raycaster-intersected-cleared', evt => {
+                    console.log("test2");
                     this.raycaster = null;
                 });
             },
@@ -25,6 +27,7 @@
                 var respondInterval = 0, bufferTime = 3000;
                 var onRespondEnabled = false, bufferEnabled = false;
                 if (!this.raycaster) { // Not intersecting.
+                    console.log("test3");
                     bufferEnabled = false;
                     bufferTime = 3000;
 
@@ -35,6 +38,7 @@
                 }
                 let intersection = this.raycaster.components.raycaster.getIntersection(this.el);
                 if (!intersection) {
+                    console.log("test4");
                     this.raycaster.setAttribute('scale', '1 1 1');
                     return;
                 }
