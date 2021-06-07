@@ -24,9 +24,9 @@
             tick: function (time, timeDelta) {
                 var respondInterval = 0;
                 var onRespondEnabled = true;
-                if (respondInterval >= 0) {
+                if (respondInterval > 0) {
                     respondInterval -= timeDelta;
-                } else if (respondInterval < 0) {
+                } else {
                     onRespondEnabled = true;
                 }
                 if (!this.raycaster) { // Not intersecting.
@@ -42,6 +42,7 @@
                     window.open(this.data, '_blank');
                 }
             },
+            remove: function () { this.raycaster = null; }
         });
         /*AFRAME.registerComponent('navigate-on-click', {
             schema: {
