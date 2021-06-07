@@ -13,23 +13,24 @@
                 url: { default: '' }
             },
             init: function () {
+                this.el.addEventListener('raycaster-intersected', evt => {
+                    this.raycaster = evt.detail.el;
+                });
+                this.el.addEventListener('raycaster-intersected-cleared', evt => {
+                    this.raycaster = null;
+                });
                 var data = this.data;
                 var el = this.el;
                 el.addEventListener('click', function () {
                     window.open(data.url, '_blank');
                 });
-            }
-        });
-        AFRAME.registerComponent('navigate-facebook', {
-            schema: {
-                url: { default: '' }
             },
-            init: function () {
-                var data = this.data;
-                var el = this.el;
-                el.addEventListener('click', function () {
-                    window.open(data.url, '_blank');
-                });
+            tick: function () {
+                if (!this.raycaster) { return; }  // Not intersecting.
+                console.log("The elem:" + this.el);
+                let intersection = this.raycaster.components.raycaster.getIntersection(this.el);
+                if (!intersection) { return; }
+                console.log(intersection.point);
             }
         });
     </script>
@@ -119,10 +120,9 @@
             </a-plane>
         </a-nft>
         <!-- static camera that moves according to the device movemenents -->
-
         <a-entity camera>
             <a-camera>
-                <a-cursor id="cursor" raycaster></a-cursor>
+                <a-cursor id="cursor" raycaster="showLine: true; far: 100; lineColor: red; lineOpacity: 0.5"></a-cursor>
             </a-camera>
         </a-entity>
     </a-scene>
