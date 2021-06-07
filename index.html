@@ -22,9 +22,9 @@
             },
 
             tick: function (time, timeDelta) {
-                var respondInterval = 0;
+                var respondInterval;
                 var onRespondEnabled = true;
-                if (respondInterval >= 0) {
+                if (respondInterval >= 0 && respondInterval != null) {
                     respondInterval -= timeDelta;
                 } else if (respondInterval < 0) {
                     onRespondEnabled = true;
