@@ -14,49 +14,45 @@
                 // Use events to figure out what raycaster is listening so we don't have to
                 // hardcode the raycaster.
                 this.el.addEventListener('raycaster-intersected', evt => {
+                    console.log("test1");
                     this.raycaster = evt.detail.el;
                 });
                 this.el.addEventListener('raycaster-intersected-cleared', evt => {
+                    console.log("test2");
                     this.raycaster = null;
                 });
             },
 
             tick: function (time, timeDelta) {
-                var time = 0, bufferTime = 3000;
-                var onRespondEnabled = true;
-                if (time >= 0) {
-                    time -= timeDelta;
-                } else {
-                    onIntersectEnabled = true;
-                }
-
+                var respondInterval = 0, bufferTime = 3000;
+                var onRespondEnabled = false, bufferEnabled = false;
                 if (!this.raycaster) { // Not intersecting.
-                    //bufferEnabled = false;
-                    //bufferTime = 3000;
+                    //console.log("test3");
+                    bufferEnabled = false;
+                    bufferTime = 3000;
 
-                    //onRespondEnabled = false;
-                    //respondInterval = 0;
+                    onRespondEnabled = false;
+                    respondInterval = 0;
                     //console.log("Not intersected");
                     return;
                 }
-                console.log("test3");
                 let intersection = this.raycaster.components.raycaster.getIntersection(this.el);
                 if (!intersection) {
-                    //this.raycaster.setAttribute('scale', '1 1 1');
+                    //console.log("test4");
+                    this.raycaster.setAttribute('scale', '1 1 1');
                     return;
                 }
                 //console.log("test5");
-                //this.raycaster.setAttribute('scale', '1.2 1.2 1.2');
-                //bufferEnabled = true;
-                //if (bufferEnabled) {
-                //    bufferTime -= timeDelta;
-                //}
-                //if (bufferTime <= 0) {
-                //    console.log("buffer time equal 0");
-                //    onRespondEnabled = true;
-                //}
+                this.raycaster.setAttribute('scale', '1.2 1.2 1.2');
+                bufferEnabled = true;
+                if (bufferEnabled) {
+                    bufferTime -= timeDelta;
+                }
+                if (bufferTime <= 0) {
+                    console.log("buffer time equal 0");
+                    onRespondEnabled = true;
+                }
                 if (onRespondEnabled) {
-                    console.log("test4");
                     window.open(this.data, '_blank');
                     respondInterval = 3000;
                 }
@@ -181,7 +177,7 @@
         <a-entity raycaster="showLine: true; far: 100; lineColor: red; lineOpacity: 0.5"></a-entity>
         <a-entity>
             <a-camera>
-                <a-cursor id="cursor" raycaster scale="0.4 0.4 0.4"></a-cursor>
+                <a-cursor id="cursor" raycaster fuse="true" scale="0.4 0.4 0.4"></a-cursor>
             </a-camera>
         </a-entity>
     </a-scene>
