@@ -17,8 +17,9 @@
                 this.el.addEventListener('raycaster-intersected', evt => {
                     this.raycaster = evt.detail.el;
                     if (this.data.onRespondEnable) {
+                        this.data.onRespondEnable = false;
+                        this.data.respondInterval = 3000;
                         window.open(this.data.url, '_blank');
-                        onRespondEnable = false;
                     }
                 });
                 this.el.addEventListener('raycaster-intersected-cleared', evt => {
@@ -29,13 +30,9 @@
             tick: function (time, timeDelta) {
                 if (this.data.respondInterval > 0) {
                     this.data.respondInterval -= timeDelta;
+                    console.log("res interval: " + this.data.respondInterval);
                 } else {
                     this.data.onRespondEnabled = true;
-                }
-                if (this.data.onRespondEnabled) {
-                    console.log(this.data.respondInterval);
-                    this.data.respondInterval = 3000;
-                    this.data.onRespondEnabled = false;
                 }
                 if (!this.raycaster) { // Not intersecting.
                     return;
