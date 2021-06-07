@@ -22,21 +22,30 @@
             },
 
             tick: function (time, timeDelta) {
-                var time = 0, stoppingTime = 3000;
-                var onIntersectEnabled = true;
-                if (time >= 0) {
-                    time -= timeDelta;
-                } else {
-                    onIntersectEnabled = true;
-                }
+                var respondInterval = 0, bufferTime = 3000;
+                var onRespondEnabled = true, bufferEnabled = false;
                 if (!this.raycaster) { return; }  // Not intersecting.
                 let intersection = this.raycaster.components.raycaster.getIntersection(this.el);
-                if (!intersection) { return; }
+                if (!intersection) {
+                    bufferEnabled = false;
+                    bufferTime = 3000;
+                    return;
+                }
                 this.el.setAttribute('scale', '0.8 0.8 0.8');
-                if (onIntersectEnabled) {
-                    time = 5000;
-                    onIntersectEnabled = false;
+                bufferEnabled = true;
+                if (bufferEnabled) {
+                    bufferTime -= timeDelta;
+                }
+                if (bufferTime <= 0) {
+                    onRespondEnabled = true;
+                }
+                if (onRespondEnabled) {
                     window.open(this.data, '_blank');
+                    respondInterval = 5000;
+                }
+                if (respondInterval > 0) {
+                    onRespondEnabled = false;
+                    respondInterval -= timeDelta;
                 }
             }
         });
