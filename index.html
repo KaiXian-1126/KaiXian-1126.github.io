@@ -9,15 +9,15 @@
     <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
     <script>
         AFRAME.registerComponent('raycaster-listen', {
-            schema: { url: { default: '' }, onRespondEnable: { default: true }, respondInterval: { default: 0 } },
+            schema: { url: { default: '' }, onRespondEnabled: { default: true }, respondInterval: { default: 0 } },
             init: function () {
                 // Use events to figure out what raycaster is listening so we don't have to
                 // hardcode the raycaster.
 
                 this.el.addEventListener('raycaster-intersected', evt => {
                     this.raycaster = evt.detail.el;
-                    if (this.data.onRespondEnable) {
-                        this.data.onRespondEnable = false;
+                    if (this.data.onRespondEnabled) {
+                        this.data.onRespondEnabled = false;
                         this.data.respondInterval = 3000;
                         window.open(this.data.url, '_blank');
                     }
