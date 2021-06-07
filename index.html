@@ -26,7 +26,7 @@
                 var onRespondEnabled = true;
                 if (respondInterval >= 0 && respondInterval != null) {
                     respondInterval -= timeDelta;
-                } else {
+                } else if (respondInterval < 0) {
                     onRespondEnabled = true;
                 }
                 if (!this.raycaster) { // Not intersecting.
@@ -37,9 +37,9 @@
                     return;
                 }
                 if (onRespondEnabled) {
-                    window.open(this.data, '_blank');
                     respondInterval = 3000;
                     onRespondEnabled = false;
+                    window.open(this.data, '_blank');
                 }
             },
             remove: function () { this.raycaster = null; }
