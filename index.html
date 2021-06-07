@@ -22,35 +22,41 @@
             },
 
             tick: function (time, timeDelta) {
-                var respondInterval = 0, bufferTime = 3000;
-                var onRespondEnabled = false, bufferEnabled = false;
-                if (!this.raycaster) { // Not intersecting.
-                    bufferEnabled = false;
-                    bufferTime = 3000;
+                var time = 0, bufferTime = 3000;
+                var onRespondEnabled = true;
+                if (time >= 0) {
+                    time -= timeDelta;
+                } else {
+                    onIntersectEnabled = true;
+                }
 
-                    onRespondEnabled = false;
-                    respondInterval = 0;
+                if (!this.raycaster) { // Not intersecting.
+                    //bufferEnabled = false;
+                    //bufferTime = 3000;
+
+                    //onRespondEnabled = false;
+                    //respondInterval = 0;
                     //console.log("Not intersected");
                     return;
                 }
                 console.log("test3");
                 let intersection = this.raycaster.components.raycaster.getIntersection(this.el);
                 if (!intersection) {
-                    this.raycaster.setAttribute('scale', '1 1 1');
+                    //this.raycaster.setAttribute('scale', '1 1 1');
                     return;
                 }
-                console.log("test4");
                 //console.log("test5");
-                this.raycaster.setAttribute('scale', '1.2 1.2 1.2');
-                bufferEnabled = true;
-                if (bufferEnabled) {
-                    bufferTime -= timeDelta;
-                }
-                if (bufferTime <= 0) {
-                    console.log("buffer time equal 0");
-                    onRespondEnabled = true;
-                }
+                //this.raycaster.setAttribute('scale', '1.2 1.2 1.2');
+                //bufferEnabled = true;
+                //if (bufferEnabled) {
+                //    bufferTime -= timeDelta;
+                //}
+                //if (bufferTime <= 0) {
+                //    console.log("buffer time equal 0");
+                //    onRespondEnabled = true;
+                //}
                 if (onRespondEnabled) {
+                    console.log("test4");
                     window.open(this.data, '_blank');
                     respondInterval = 3000;
                 }
