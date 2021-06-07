@@ -29,20 +29,21 @@
                 if (!intersection) {
                     bufferEnabled = false;
                     bufferTime = 3000;
+                    this.raycaster.setAttribute('scale', '1 1 1');
                     return;
                 }
                 this.raycaster.setAttribute('scale', '1.5 1.5 1.5');
                 bufferEnabled = true;
                 if (bufferEnabled) {
                     bufferTime -= timeDelta;
-                    console.log("buffer time:" + bufferTime);
                 }
                 if (bufferTime <= 0) {
+                    console.log("buffer time equal 0");
                     onRespondEnabled = true;
                 }
                 if (onRespondEnabled) {
                     window.open(this.data, '_blank');
-                    respondInterval = 5000;
+                    respondInterval = 3000;
                 }
                 if (respondInterval > 0) {
                     onRespondEnabled = false;
