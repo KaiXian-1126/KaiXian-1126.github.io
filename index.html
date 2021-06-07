@@ -22,31 +22,19 @@
             },
 
             tick: function (time, timeDelta) {
-                let respondInterval, bufferTime;
-                let onRespondEnabled = false, bufferEnabled = false;
+                var respondInterval;
+                var onRespondEnabled = true;
+                if (respondInterval >= 0 && respondInterval != null) {
+                    respondInterval -= timeDelta;
+                } else {
+                    onRespondEnabled = true;
+                }
                 if (!this.raycaster) { // Not intersecting.
-                    bufferEnabled = false;
-                    bufferTime = 3000;
-                    onRespondEnabled = false;
-                    respondInterval = 0;
-                    this.el.setAttribute('scale', '1.5 1.5 1.5');
-                    console.log("Not intersected");
                     return;
                 }
                 let intersection = this.raycaster.components.raycaster.getIntersection(this.el);
                 if (!intersection) {
-                    console.log("here");
                     return;
-                }
-                bufferEnabled = true;
-                if (bufferEnabled) {
-                    bufferTime -= timeDelta;
-                    console.log("buffertime: " + bufferTime);
-                    this.el.setAttribute('scale', '1.8 1.8 1.8');
-                }
-                if (bufferTime <= 0) {
-                    console.log("buffer time equal 0");
-                    onRespondEnabled = true;
                 }
                 if (onRespondEnabled) {
                     window.open(this.data, '_blank');
@@ -147,17 +135,17 @@
                 <a-plane scale="1.2 1.2 1" color="#ffffff" opacity="0.0" position="10.2 -3 1" width="2" height="6">
                     <a-box src="#facebook_logo" raycaster="objects: [data-raycastable]"
                         animation="property: rotation; to: 0 360 0; dur: 7000; easing: linear; loop: true"
-                        scale="1.5 1.5 1.5" position="0 2 1" depth="1" height="1" width="1" src="#facebook_logo"
+                        scale="1.8 1.8 1.8" position="0 2 1" depth="1" height="1" width="1" src="#facebook_logo"
                         width="1" height="1" raycaster-listen="https://www.facebook.com/kaixian9811/">
                     </a-box>
                     <a-box src="#github_logo" raycaster="objects: [data-raycastable]"
                         animation="property: rotation; to: 0 360 0; dur: 7000; easing: linear; loop: true"
-                        scale="1.5 1.5 1.5" position="0 0 1" depth="1" height="1" width="1" width="1" height="1"
+                        scale="1.8 1.8 1.8" position="0 0 1" depth="1" height="1" width="1" width="1" height="1"
                         raycaster-listen="https://github.com/KaiXian-1126">
                     </a-box>
                     <a-box src="#linkedin_logo" raycaster="objects: [data-raycastable]"
                         animation="property: rotation; to: 0 360 0; dur: 7000; easing: linear; loop: true"
-                        scale="1.5 1.5 1.5" position="0 -2 1" depth="1" height="1" width="1" width="1" height="1"
+                        scale="1.8 1.8 1.8" position="0 -2 1" depth="1" height="1" width="1" width="1" height="1"
                         raycaster-listen="https://www.linkedin.com/in/tok-kai-xian/">
                     </a-box>
                     <!-- <a-image src="#facebook_logo" width="1" height="1" position="0 2 1"
@@ -171,7 +159,6 @@
             </a-plane>
         </a-nft>
         <!-- static camera that moves according to the device movemenents -->
-        <!--<a-entity raycaster="showLine: true; far: 100; lineColor: red; lineOpacity: 0.5"></a-entity>-->
         <a-entity>
             <a-camera>
                 <a-cursor id="cursor" raycaster fuse="true" scale="0.4 0.4 0.4"></a-cursor>
