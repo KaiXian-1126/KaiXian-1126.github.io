@@ -29,8 +29,6 @@
                 } else {
                     onIntersectEnabled = true;
                 }
-                console.log("Time: " + time);
-                console.log("timeDelta" + timeDelta);
                 if (!this.raycaster) { return; }  // Not intersecting.
                 let intersection = this.raycaster.components.raycaster.getIntersection(this.el);
                 if (!intersection) { return; }
