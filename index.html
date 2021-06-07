@@ -39,10 +39,7 @@
                 if (onRespondEnabled) {
                     window.open(this.data, '_blank');
                     respondInterval = 3000;
-                }
-                if (respondInterval > 0) {
                     onRespondEnabled = false;
-                    respondInterval -= timeDelta;
                 }
             },
             remove: function () { this.raycaster = null; }
