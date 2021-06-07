@@ -22,13 +22,23 @@
             },
 
             tick: function (time, timeDelta) {
+                var time = 0;
+                var onIntersectEnabled = true;
+                if (time >= 0) {
+                    time -= timeDelta;
+                } else {
+                    onIntersectEnabled = true;
+                }
                 console.log("Time: " + time);
                 console.log("timeDelta" + timeDelta);
                 if (!this.raycaster) { return; }  // Not intersecting.
                 let intersection = this.raycaster.components.raycaster.getIntersection(this.el);
                 if (!intersection) { return; }
-                console.log(intersection.point);
-                //window.open(this.data, '_blank');
+                if (onIntersectEnabled) {
+                    time = 3000;
+                    onIntersectEnabled = false;
+                    window.open(this.data, '_blank');
+                }
             }
         });
         /*AFRAME.registerComponent('navigate-on-click', {
