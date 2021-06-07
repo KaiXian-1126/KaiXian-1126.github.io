@@ -22,13 +22,13 @@
             },
 
             tick: function (time, timeDelta) {
-                var time = 0;
-                var onRespondEnabled = true;
-                if (time > 0) {
-                    time -= timeDelta;
-                } else {
-                    onRespondEnabled = true;
-                }
+                var respondInterval;
+                var onRespondEnabled;
+                //if (respondInterval >= 0) {
+                //    respondInterval -= timeDelta;
+                //} else if (respondInterval < 0) {
+                //    onRespondEnabled = true;
+                //}
                 if (!this.raycaster) { // Not intersecting.
                     return;
                 }
@@ -36,13 +36,13 @@
                 if (!intersection) {
                     return;
                 }
+                onRespondEnabled = true;
                 if (onRespondEnabled) {
-                    time = 3000;
+                    respondInterval = 3000;
                     onRespondEnabled = false;
                     window.open(this.data, '_blank');
                 }
             },
-            remove: function () { this.raycaster = null; }
         });
         /*AFRAME.registerComponent('navigate-on-click', {
             schema: {
