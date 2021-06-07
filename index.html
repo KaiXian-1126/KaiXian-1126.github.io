@@ -9,17 +9,15 @@
     <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
     <script>
         AFRAME.registerComponent('raycaster-listen', {
-            schema: { type: 'string' },
+            schema: { url: { default: '' }, onRespondEnable: { default: true }, respondInterval: { default: 0 } },
             init: function () {
                 // Use events to figure out what raycaster is listening so we don't have to
                 // hardcode the raycaster.
-                let onRespondEnable = true;
-                let respondInterval = 0;
-                let onRespondEnabled = true;
+
                 this.el.addEventListener('raycaster-intersected', evt => {
                     this.raycaster = evt.detail.el;
-                    if (onRespondEnable) {
-                        window.open(this.data, '_blank');
+                    if (this.data.onRespondEnable) {
+                        window.open(this.data.url, '_blank');
                         onRespondEnable = false;
                     }
                 });
@@ -29,15 +27,15 @@
             },
 
             tick: function (time, timeDelta) {
-                if (respondInterval > 0) {
-                    respondInterval -= timeDelta;
+                if (this.data.respondInterval > 0) {
+                    this.data.respondInterval -= timeDelta;
                 } else {
-                    onRespondEnabled = true;
+                    this.data.onRespondEnabled = true;
                 }
-                if (onRespondEnabled) {
-                    console.log(respondInterval);
-                    respondInterval = 3000;
-                    onRespondEnabled = false;
+                if (this.data.onRespondEnabled) {
+                    console.log(this.data.respondInterval);
+                    this.data.respondInterval = 3000;
+                    this.data.onRespondEnabled = false;
                 }
                 if (!this.raycaster) { // Not intersecting.
                     return;
@@ -48,31 +46,7 @@
                 }
             },
         });
-        /*AFRAME.registerComponent('navigate-on-click', {
-            schema: {
-                url: { default: '' }
-            },
-            init: function () {
-                this.el.addEventListener('raycaster-intersected', evt => {
-                    this.raycaster = evt.detail.el;
-                });
-                this.el.addEventListener('raycaster-intersected-cleared', evt => {
-                    this.raycaster = null;
-                });
-                var data = this.data;
-                var el = this.el;
-                el.addEventListener('click', function () {
-                    window.open(data.url, '_blank');
-                });
-            },
-            tick: function () {
-                if (!this.raycaster) { return; }  // Not intersecting.
-                console.log("The elem:" + this.el);
-                let intersection = this.raycaster.components.raycaster.getIntersection(this.el);
-                if (!intersection) { return; }
-                console.log(intersection.point);
-            }
-        });*/
+
     </script>
     <!-- style for the loader -->
     <style>
@@ -137,17 +111,17 @@
                     <a-box src="#facebook_logo" raycaster="objects: [data-raycastable]"
                         animation="property: rotation; to: 0 360 0; dur: 7000; easing: linear; loop: true"
                         scale="1.8 1.8 1.8" position="0 2 1" depth="1" height="1" width="1" src="#facebook_logo"
-                        width="1" height="1" raycaster-listen="https://www.facebook.com/kaixian9811/">
+                        width="1" height="1" raycaster-listen="url: https://www.facebook.com/kaixian9811/">
                     </a-box>
                     <a-box src="#github_logo" raycaster="objects: [data-raycastable]"
                         animation="property: rotation; to: 0 360 0; dur: 7000; easing: linear; loop: true"
                         scale="1.8 1.8 1.8" position="0 0 1" depth="1" height="1" width="1" width="1" height="1"
-                        raycaster-listen="https://github.com/KaiXian-1126">
+                        raycaster-listen="url: https://github.com/KaiXian-1126">
                     </a-box>
                     <a-box src="#linkedin_logo" raycaster="objects: [data-raycastable]"
                         animation="property: rotation; to: 0 360 0; dur: 7000; easing: linear; loop: true"
                         scale="1.8 1.8 1.8" position="0 -2 1" depth="1" height="1" width="1" width="1" height="1"
-                        raycaster-listen="https://www.linkedin.com/in/tok-kai-xian/">
+                        raycaster-listen="url: https://www.linkedin.com/in/tok-kai-xian/">
                     </a-box>
                     <!-- <a-image src="#facebook_logo" width="1" height="1" position="0 2 1"
                         navigate-on-click="url: https://www.facebook.com/kaixian9811/"></a-image>
