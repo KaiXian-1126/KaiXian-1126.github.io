@@ -22,13 +22,13 @@
             },
 
             tick: function (time, timeDelta) {
-                var respondInterval;
-                var onRespondEnabled;
-                //if (respondInterval >= 0) {
-                //    respondInterval -= timeDelta;
-                //} else if (respondInterval < 0) {
-                //    onRespondEnabled = true;
-                //}
+                let respondInterval;
+                let onRespondEnabled = true;
+                if (respondInterval > 0 && respondInterval != null) {
+                    respondInterval -= timeDelta;
+                } else {
+                    onRespondEnabled = true;
+                }
                 if (!this.raycaster) { // Not intersecting.
                     return;
                 }
@@ -36,8 +36,8 @@
                 if (!intersection) {
                     return;
                 }
-                onRespondEnabled = true;
                 if (onRespondEnabled) {
+                    console.log(respondInterval);
                     respondInterval = 3000;
                     onRespondEnabled = false;
                     window.open(this.data, '_blank');
@@ -137,13 +137,11 @@
                     </a-box>
                     <a-box src="#github_logo" raycaster="objects: [data-raycastable]"
                         animation="property: rotation; to: 0 360 0; dur: 7000; easing: linear; loop: true"
-                        scale="1.8 1.8 1.8" position="0 0 1" depth="1" height="1" width="1" width="1" height="1"
-                        raycaster-listen="https://github.com/KaiXian-1126">
+                        scale="1.8 1.8 1.8" position="0 0 1" depth="1" height="1" width="1" width="1" height="1">
                     </a-box>
                     <a-box src="#linkedin_logo" raycaster="objects: [data-raycastable]"
                         animation="property: rotation; to: 0 360 0; dur: 7000; easing: linear; loop: true"
-                        scale="1.8 1.8 1.8" position="0 -2 1" depth="1" height="1" width="1" width="1" height="1"
-                        raycaster-listen="https://www.linkedin.com/in/tok-kai-xian/">
+                        scale="1.8 1.8 1.8" position="0 -2 1" depth="1" height="1" width="1" width="1" height="1">
                     </a-box>
                     <!-- <a-image src="#facebook_logo" width="1" height="1" position="0 2 1"
                         navigate-on-click="url: https://www.facebook.com/kaixian9811/"></a-image>
