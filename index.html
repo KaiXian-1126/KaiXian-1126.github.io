@@ -14,6 +14,8 @@
                 // Use events to figure out what raycaster is listening so we don't have to
                 // hardcode the raycaster.
                 let onRespondEnable = true;
+                let respondInterval = 0;
+                let onRespondEnabled = true;
                 this.el.addEventListener('raycaster-intersected', evt => {
                     this.raycaster = evt.detail.el;
                     if (onRespondEnable) {
@@ -26,13 +28,16 @@
                 });
             },
 
-            /*tick: function (time, timeDelta) {
-                let respondInterval;
-                let onRespondEnabled = true;
-                if (respondInterval > 0 && respondInterval != null) {
+            tick: function (time, timeDelta) {
+                if (respondInterval > 0) {
                     respondInterval -= timeDelta;
                 } else {
                     onRespondEnabled = true;
+                }
+                if (onRespondEnabled) {
+                    console.log(respondInterval);
+                    respondInterval = 3000;
+                    onRespondEnabled = false;
                 }
                 if (!this.raycaster) { // Not intersecting.
                     return;
@@ -41,13 +46,7 @@
                 if (!intersection) {
                     return;
                 }
-                if (onRespondEnabled) {
-                    console.log(respondInterval);
-                    respondInterval = 3000;
-                    onRespondEnabled = false;
-                    window.open(this.data, '_blank');
-                }
-            },*/
+            },
         });
         /*AFRAME.registerComponent('navigate-on-click', {
             schema: {
