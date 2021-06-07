@@ -27,7 +27,7 @@
                 var respondInterval = 0, bufferTime = 3000;
                 var onRespondEnabled = false, bufferEnabled = false;
                 if (!this.raycaster) { // Not intersecting.
-                    console.log("test3");
+                    //console.log("test3");
                     bufferEnabled = false;
                     bufferTime = 3000;
 
@@ -38,10 +38,11 @@
                 }
                 let intersection = this.raycaster.components.raycaster.getIntersection(this.el);
                 if (!intersection) {
-                    console.log("test4");
+                    //console.log("test4");
                     this.raycaster.setAttribute('scale', '1 1 1');
                     return;
                 }
+                //console.log("test5");
                 this.raycaster.setAttribute('scale', '1.2 1.2 1.2');
                 bufferEnabled = true;
                 if (bufferEnabled) {
@@ -154,12 +155,12 @@
                     </a-box>
                     <a-box src="#github_logo" raycaster="objects: [data-raycastable]"
                         animation="property: rotation; to: 0 360 0; dur: 7000; easing: linear; loop: true"
-                        position="0 0 1" depth="1" height="1" width="1" width="1" height="1"
+                        scale="1.5 1.5 1.5" position="0 0 1" depth="1" height="1" width="1" width="1" height="1"
                         raycaster-listen="https://github.com/KaiXian-1126">
                     </a-box>
                     <a-box src="#linkedin_logo" raycaster="objects: [data-raycastable]"
                         animation="property: rotation; to: 0 360 0; dur: 7000; easing: linear; loop: true"
-                        position="0 -2 1" depth="1" height="1" width="1" width="1" height="1"
+                        scale="1.5 1.5 1.5" position="0 -2 1" depth="1" height="1" width="1" width="1" height="1"
                         raycaster-listen="https://www.linkedin.com/in/tok-kai-xian/">
                     </a-box>
                     <!-- <a-image src="#facebook_logo" width="1" height="1" position="0 2 1"
