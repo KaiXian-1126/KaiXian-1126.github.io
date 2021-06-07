@@ -23,10 +23,10 @@
 
             tick: function () {
                 if (!this.raycaster) { return; }  // Not intersecting.
-                console.log(this.data);
                 let intersection = this.raycaster.components.raycaster.getIntersection(this.el);
                 if (!intersection) { return; }
                 console.log(intersection.point);
+                window.open(this.data, '_blank');
             }
         });
         /*AFRAME.registerComponent('navigate-on-click', {
