@@ -22,9 +22,9 @@
             },
 
             tick: function (time, timeDelta) {
-                var respondInterval;
+                var respondInterval = 0;
                 var onRespondEnabled = true;
-                if (respondInterval >= 0 && respondInterval != null) {
+                if (respondInterval >= 0) {
                     respondInterval -= timeDelta;
                 } else if (respondInterval < 0) {
                     onRespondEnabled = true;
@@ -42,7 +42,6 @@
                     window.open(this.data, '_blank');
                 }
             },
-            remove: function () { this.raycaster = null; }
         });
         /*AFRAME.registerComponent('navigate-on-click', {
             schema: {
