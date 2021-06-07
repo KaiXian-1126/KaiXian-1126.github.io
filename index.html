@@ -151,10 +151,10 @@
             </a-plane>
         </a-nft>
         <!-- static camera that moves according to the device movemenents -->
-        <a-entity raycaster="showLine: true; far: 100; lineColor: red; lineOpacity: 0.5"></a-entity>
-        <a-entity camera>
+        <a-entity raycaster="direction: 0 -1 0;showLine: true; far: 100; lineColor: red; lineOpacity: 0.5"></a-entity>
+        <a-entity>
             <a-camera>
-                <a-cursor id="cursor" raycaster></a-cursor>
+                <a-cursor id="cursor" raycaster fuse="true" fuseTimeout="3000" scale="0.2 0.2 0.2"></a-cursor>
             </a-camera>
         </a-entity>
     </a-scene>
