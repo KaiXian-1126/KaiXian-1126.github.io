@@ -23,7 +23,7 @@
 
             tick: function (time, timeDelta) {
                 var respondInterval = 0, bufferTime = 3000;
-                var onRespondEnabled = true, bufferEnabled = false;
+                var onRespondEnabled = false, bufferEnabled = false;
                 if (!this.raycaster) { return; }  // Not intersecting.
                 let intersection = this.raycaster.components.raycaster.getIntersection(this.el);
                 if (!intersection) {
