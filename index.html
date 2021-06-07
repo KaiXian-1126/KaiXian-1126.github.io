@@ -27,15 +27,17 @@
                 if (!this.raycaster) { // Not intersecting.
                     bufferEnabled = false;
                     bufferTime = 3000;
-                    this.raycaster.setAttribute('scale', '1 1 1');
+
                     onRespondEnabled = false;
                     respondInterval = 0;
                     console.log("Not intersected");
                     return;
                 }
                 let intersection = this.raycaster.components.raycaster.getIntersection(this.el);
-                if (!intersection)
+                if (!intersection) {
+                    this.raycaster.setAttribute('scale', '1 1 1');
                     return;
+                }
                 this.raycaster.setAttribute('scale', '1.2 1.2 1.2');
                 bufferEnabled = true;
                 if (bufferEnabled) {
