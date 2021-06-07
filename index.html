@@ -22,7 +22,7 @@
             },
 
             tick: function (time, timeDelta) {
-                var time = 0;
+                var time = 0, stoppingTime = 3000;
                 var onIntersectEnabled = true;
                 if (time >= 0) {
                     time -= timeDelta;
@@ -32,8 +32,9 @@
                 if (!this.raycaster) { return; }  // Not intersecting.
                 let intersection = this.raycaster.components.raycaster.getIntersection(this.el);
                 if (!intersection) { return; }
+                this.el.setAttribute('scale', '0.8 0.8 0.8');
                 if (onIntersectEnabled) {
-                    time = 3000;
+                    time = 5000;
                     onIntersectEnabled = false;
                     window.open(this.data, '_blank');
                 }
@@ -151,10 +152,10 @@
             </a-plane>
         </a-nft>
         <!-- static camera that moves according to the device movemenents -->
-        <a-entity raycaster="direction: 0 -1 0;showLine: true; far: 100; lineColor: red; lineOpacity: 0.5"></a-entity>
+        <a-entity raycaster="showLine: true; far: 100; lineColor: red; lineOpacity: 0.5"></a-entity>
         <a-entity>
             <a-camera>
-                <a-cursor id="cursor" raycaster fuse="true" fuseTimeout="3000" scale="0.2 0.2 0.2"></a-cursor>
+                <a-cursor id="cursor" raycaster fuse="true" scale="0.4 0.4 0.4"></a-cursor>
             </a-camera>
         </a-entity>
     </a-scene>
